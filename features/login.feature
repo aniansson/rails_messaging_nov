@@ -6,4 +6,4 @@ Feature: Login
    Scenario: Loging in a user
      Given I am on the "index" page
      And I click "Login"
-     Then I shoud be on the "Sign_in" page
+     Then I should be on the "Sign in" page
