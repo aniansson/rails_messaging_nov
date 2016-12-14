@@ -25,6 +25,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
+  gem 'launchy'
+  gem 'pry'
 end
 
 group :production do
