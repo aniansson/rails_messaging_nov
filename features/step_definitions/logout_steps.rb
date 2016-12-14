@@ -1,5 +1,5 @@
 Given(/^that I am logged in as "([^"]*)"$/) do |name|
-  user = User.find_by(name: name)
+  user = User.create(name: name)
   login_as(user, scope: :user)
 end
 
@@ -10,14 +10,20 @@ Given(/^I am on the "([^"]*)" page$/) do |page|
   end
 end
 
-When(/^I click the "([^"]*)" button$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
+When(/^I click "([^"]*)"$/) do |button|
+  click_link_or_button button
 end
 
-Then(/^I should be directed to "([^"]*)" page$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
+Then(/^I should be on the "([^"]*)" page$/) do |page|
+if page == "/"
+  expect(page).to eq root_path
+end
 end
 
-Then(/^I should see "([^"]*)"$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
+Then(/^I should see "([^"]*)"$/) do |text|
+  expect(page).to have_content text
 end
+
+# Given(/^show me the page$/) do
+#   save_and_open_page
+# end
