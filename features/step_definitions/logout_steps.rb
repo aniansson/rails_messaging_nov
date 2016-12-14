@@ -1,5 +1,9 @@
-Given(/^that I am logged in as "([^"]*)"$/) do |name|
-  user = User.create(name: name)
+Given(/^that there is a user named "([^"]*)"$/) do |name|
+  user = User.create(name: name, email: "user@user.com", password: "12345678")
+end
+
+Given(/^"([^"]*)" is logged in$/) do |name|
+  user = User.find_by(name: name)
   login_as(user, scope: :user)
 end
 
@@ -24,6 +28,6 @@ Then(/^I should see "([^"]*)"$/) do |text|
   expect(page).to have_content text
 end
 
-# Given(/^show me the page$/) do
-#   save_and_open_page
-# end
+Given(/^show me the page$/) do
+  save_and_open_page
+end
