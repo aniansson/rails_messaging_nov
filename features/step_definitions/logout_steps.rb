@@ -1,5 +1,6 @@
 Given(/^that there is a user named "([^"]*)"$/) do |name|
   # user = User.create(name: name, email: "user@user.com", password: "12345678")
+  # The above comment is left in to demonstrate that FactoryGirl is performing the same task below.
   user = FactoryGirl.create(:user, name: name)
 end
 
