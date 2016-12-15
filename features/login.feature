@@ -1,9 +1,25 @@
 Feature: Login
 
   Background:
-    Given that I'm not loged in
+    Given that there is a user named "Test-User"
 
-   Scenario: Loging in a user
-     Given I am on the "index" page
-     And I click "Login"
-     Then I should be on the "Sign in" page
+   Scenario: Logging in a user
+     Given I am on the "Log in" page
+     When I fill in "Email" with "email@random.com"
+     And I fill in "Password" with "password"
+     Then I click "Log in"
+     Then I should see "Signed in successfully."
+
+  Scenario: Wrong email
+    Given I am on the "Log in" page
+    When I fill in "Email" with "email@rando.com"
+    And I fill in "Password" with "password"
+    Then I click "Log in"
+    Then I should see "Invalid email or password"
+
+    Scenario: Wrong password
+      Given I am on the "Log in" page
+      When I fill in "Email" with "email@random.com"
+      And I fill in "Password" with "passwo"
+      Then I click "Log in"
+      Then I should see "Invalid email or password"

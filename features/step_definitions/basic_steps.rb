@@ -1,3 +1,7 @@
+Given(/^that I'm not logged in$/) do
+  logout
+end
+
 Given(/^that there is a user named "([^"]*)"$/) do |name|
   # user = User.create(name: name, email: "user@user.com", password: "12345678")
   # The above comment is left in to demonstrate that FactoryGirl is performing the same task below.
@@ -14,6 +18,8 @@ Given(/^I am on the "([^"]*)" page$/) do |page|
     visit mailbox_inbox_path
   elsif page == "index"
       visit root_path
+  elsif page == "Log in"
+      visit new_user_session_path
   end
 end
 
@@ -34,4 +40,8 @@ end
 
 Given(/^show me the page$/) do
   save_and_open_page
+end
+
+Then(/^I fill in "([^"]*)" with "([^"]*)"$/) do |field, content|
+  fill_in field, with: content
 end
