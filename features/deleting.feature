@@ -11,7 +11,7 @@ Feature: As a visitor,
   Scenario: Deleting a message in the inbox
     Given "Test-User" is logged in
     When "Test-User" sends a message to "User1"
-    Then I log out
+    And that user logs out
     Given "User1" is logged in
     When I am on the "inbox" page
     Then "User1" should have "1" message

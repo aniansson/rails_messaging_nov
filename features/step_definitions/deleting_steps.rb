@@ -5,9 +5,9 @@ Given(/^the following users exist:$/) do |table|
 end
 
 Given(/^"([^"]*)" sends a message to "([^"]*)"$/) do |sender, name|
-user = User.find_by(name: sender)
-receiver = User.find_by(name: name)
-user.send_message(receiver, "body", "content")
+  user = User.find_by(name: sender)
+  receiver = User.find_by(name: name)
+  user.send_message(receiver, "body", "content")
 end
 
 Then(/^"([^"]*)" should have "([^"]*)" (?:message|messages)$/) do |name, expected_count|
