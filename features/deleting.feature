@@ -12,11 +12,11 @@ Feature: As a visitor,
     Given "Test-User" is logged in
     And I send an email to "User1"
     And I should be on the "index" page
-    And I click on "Logout"
-    Given that I am logged in as "User1"
-    And I am on the "index"
-    And I click on the "inbox" page
-    Then I should have "1" message
-    And I click on the "View" link
-    And I click on the "Move to trash" link
-    Then I should have "0" messages
+    And I click "Logout"
+    Given "User1" is logged in
+    And I am on the "index" page
+    And I click "Inbox"
+    Then "User1" should have "1" message
+    And I click "View"
+    And I click "Move to trash"
+    Then "User1" should have "0" messages
