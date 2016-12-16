@@ -5,13 +5,13 @@ Feature: As a visitor,
   Background:
     Given there is users named:
       | name      | email            | password |
-      | Test Name | email@random.com | password |
+      | Test-User | email@random.com | password |
       | User1     | user1@random.com | password |
 
   Scenario: Deleting a message
-    Given I am logged in as "Test-User"
+    Given "Test-User" is logged in
     And I send an email to "User1"
-    And I am on the "index"
+    And I should be on the "index" page
     And I click on "Logout"
     Given that I am logged in as "User1"
     And I am on the "index"

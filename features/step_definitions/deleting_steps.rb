@@ -9,12 +9,16 @@ Given(/^I am logged in as "([^"]*)"$/) do |name|
   login_as(user, scope: :user)
 end
 
-Given(/^I send an email to "([^"]*)"$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given(/^I am on the "([^"]*)"$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
+Given(/^I send an email to "([^"]*)"$/) do |name|
+  steps %Q{
+      And I am on the "inbox" page
+      And I click "Compose"
+      When I select "#{name}" from recipients
+      And I fill in "Subject" with "subject"
+      And I fill in "Message" with "message to #{name}"
+      When I click "Send Message"
+      Then I should see "Your message was successfully sent"
+  }
 end
 
 Given(/^I click on "([^"]*)"$/) do |arg1|
