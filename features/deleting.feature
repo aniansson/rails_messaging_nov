@@ -3,16 +3,16 @@ Feature: As a visitor,
   that are receiven
 
   Background:
-    Given there is users named:
+    Given the following users exist:
       | name      | email            | password |
       | Test-User | email@random.com | password |
       | User1     | user1@random.com | password |
 
   Scenario: Deleting a message
     Given "Test-User" is logged in
-    And I send an email to "User1"
+    And "Test-User" send a message to "User1"
     And I should be on the "index" page
-    And I click "Logout"
+    And that I'm not logged in
     Given "User1" is logged in
     And I am on the "index" page
     And I click "Inbox"
