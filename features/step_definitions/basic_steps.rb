@@ -1,3 +1,12 @@
+
+When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |field, content|
+  fill_in field, with: content
+end
+
+Then(/^I should see "([^"]*)"$/) do |content|
+  expect(page).to have_content content
+end
+
 Given(/^that I'm not logged in$/) do
   logout
 end
@@ -8,6 +17,10 @@ Given(/^that there is a user named "([^"]*)"$/) do |name|
   user = FactoryGirl.create(:user, name: name)
 end
 
+Given(/^that there is a user named "([^"]*)" with an email of "([^"]*)"$/) do |name, email|
+  user = FactoryGirl.create(:user, name: name, email: email)
+end
+
 Given(/^"([^"]*)" is logged in$/) do |name|
   user = User.find_by(name: name)
   login_as(user, scope: :user)
@@ -15,11 +28,13 @@ end
 
 Given(/^I am on the "([^"]*)" page$/) do |page|
   if page == "inbox"
-    visit mailbox_inbox_path
+      visit mailbox_inbox_path
   elsif page == "index"
       visit root_path
   elsif page == "Log in"
       visit new_user_session_path
+  elsif page == "sign up"
+      visit new_user_registration_path
   end
 end
 
@@ -34,14 +49,7 @@ Then(/^I should be on the "([^"]*)" page$/) do |page|
   end
 end
 
-Then(/^I should see "([^"]*)"$/) do |text|
-  expect(page).to have_content text
-end
 
 Given(/^show me the page$/) do
   save_and_open_page
-end
-
-Then(/^I fill in "([^"]*)" with "([^"]*)"$/) do |field, content|
-  fill_in field, with: content
 end
