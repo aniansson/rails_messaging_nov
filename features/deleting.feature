@@ -1,6 +1,6 @@
 Feature: As a visitor,
-  I would like to delete emails,
-  that are receiven
+  in order to have a nice mailbox,
+  I would like to delete received emails.
 
   Background:
     Given the following users exist:
@@ -8,15 +8,13 @@ Feature: As a visitor,
       | Test-User | email@random.com | password |
       | User1     | user1@random.com | password |
 
-  Scenario: Deleting a message
+  Scenario: Deleting a message in the inbox
     Given "Test-User" is logged in
-    And "Test-User" send a message to "User1"
-    And I should be on the "index" page
-    And that I'm not logged in
+    When "Test-User" sends a message to "User1"
+    Then I log out
     Given "User1" is logged in
-    And I am on the "index" page
-    And I click "Inbox"
+    When I am on the "inbox" page
     Then "User1" should have "1" message
-    And I click "View"
+    When I click "View"
     And I click "Move to trash"
     Then "User1" should have "0" messages

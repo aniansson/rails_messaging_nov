@@ -7,7 +7,7 @@ Then(/^I should see "([^"]*)"$/) do |content|
   expect(page).to have_content content
 end
 
-Given(/^that I'm not logged in$/) do
+Given(/^I log out$/) do
   logout
 end
 

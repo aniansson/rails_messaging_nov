@@ -4,7 +4,7 @@ Given(/^the following users exist:$/) do |table|
   end
 end
 
-Given(/^"([^"]*)" send a message to "([^"]*)"$/) do |sender, name|
+Given(/^"([^"]*)" sends a message to "([^"]*)"$/) do |sender, name|
 user = User.find_by(name: sender)
 receiver = User.find_by(name: name)
 user.send_message(receiver, "body", "content")
