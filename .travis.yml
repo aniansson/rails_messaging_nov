@@ -1,7 +1,7 @@
 language: ruby
 cache: bundler
 rvm:
-  - 2.2.1
+  - 2.3.1
 before_script:
   - bundle exec rake db:create --all
   - bundle exec rake db:migrate
@@ -9,3 +9,13 @@ script:
   - bundle exec rake ci:tests
 services:
   - postgresql
+deploy:
+  provider: heroku
+  api_key:
+    secure: uhefyaz0gv6+cRApAj9xQK6VL6bYmZoaZP/J2HmyJqikADleAtn5PvQsgTV+IH8N9bjczLIOiiQRyECX3jF7ok/vO/eIW+tClCUMrje1GHcxaSdVS/OkG1KcYjkYqsyJw4+iw1wC41XXSYiLnAuyX5rrmal/9ytgWfN4LPZPtxT/JbwPpcBtR2aa+VbTMONBUzN76NaFsE54JXEfm3HlyhCMhzAHS0xtjtMhF/AQD+HiRs6BXT5l0QrWC3cmZ9IzkiLzpbU8PWJbrAfVuzgjgwwy7BjxgaD3ScGhBtnLdktOPy5RNC1ukeCm1mJMxplPSuz27YVbteqBarUleWAkmHU5l+HWGi/oV2bByw4xC9plOSW8O69Z9WxItPBqnDwSaG4qhX5Dc/yMrpuIdHgYIdaNqfW3/AS3gOXziKhlb+EMFJDPrUe2gfWC9vMj4a0RjeBdPcR1RLgKcIUzzdI4bvtvfwIJPon1aD297/MR1p2zD3D3Qd22L+mM+9f7iSQSnLFYbCuF/kWXiZkn8T0tspWl8xq4JlNe3WtkcbYKFEF06Ttbzy5nfNyzTI+Mx0xf2fHRnMtqvbMIPAwiBQ3wpRI7Cec3QEr6Lq9bV0iZU4ip5mnST97sAzgUJDowCPae6Pg5tp1VG5q2YTGQApyhyGTj0WIClRy9M2mX3jSxVWU=
+  app:
+    develop: carailsmessaging
+  on:
+    repo: CraftAcademy/rails_messaging_nov
+  run:
+    - rails db:migrate
