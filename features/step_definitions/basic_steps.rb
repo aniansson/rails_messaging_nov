@@ -1,3 +1,12 @@
+
+When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |field, content|
+  fill_in field, with: content
+end
+
+Then(/^I should see "([^"]*)"$/) do |content|
+  expect(page).to have_content content
+end
+
 Given(/^that I'm not logged in$/) do
   logout
 end
@@ -15,11 +24,13 @@ end
 
 Given(/^I am on the "([^"]*)" page$/) do |page|
   if page == "inbox"
-    visit mailbox_inbox_path
+      visit mailbox_inbox_path
   elsif page == "index"
       visit root_path
   elsif page == "Log in"
       visit new_user_session_path
+  elsif page == "sign up"
+      visit new_user_registration_path
   end
 end
 
@@ -34,14 +45,10 @@ Then(/^I should be on the "([^"]*)" page$/) do |page|
   end
 end
 
-Then(/^I should see "([^"]*)"$/) do |text|
-  expect(page).to have_content text
-end
 
 Given(/^show me the page$/) do
   save_and_open_page
 end
 
-Then(/^I fill in "([^"]*)" with "([^"]*)"$/) do |field, content|
-  fill_in field, with: content
-end
+
+
